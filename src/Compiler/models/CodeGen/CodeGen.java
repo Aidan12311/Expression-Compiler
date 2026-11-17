@@ -65,6 +65,8 @@ public class CodeGen {
 
     private String genDiv(Expr left, Expr right) {
         return genLeftRight(right, left)
+                .append("test rbx, rbx\n")
+                .append("jz div_by_zero\n")
                 .append("xor rdx, rdx\n")
                 .append("div rbx\n")
                 .toString();
@@ -73,13 +75,13 @@ public class CodeGen {
     /* == Logical binary operations == */
     private String genAnd(Expr left, Expr right) {
         return genLeftRight(left, right)
-                .append("and rax, rbx")
+                .append("and rax, rbx\n")
                 .toString();
     }
 
     private String genOr(Expr left, Expr right) {
         return genLeftRight(left, right)
-                .append("or rax, rbx")
+                .append("or rax, rbx\n")
                 .toString();
     }
 

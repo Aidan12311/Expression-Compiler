@@ -43,9 +43,11 @@ public class CompilerView extends Loggable {
         
         global main
         extern printf
+        extern exit
         
         section .data
         fmt: db "Evaluation result: %d", 0xa, 0x00
+        div_zero_msg: db "Error: division by zero", 0xa, 0x00
         
         section .text
         main:
@@ -60,11 +62,19 @@ public class CompilerView extends Loggable {
         
         mov rdi, fmt
         mov rsi, rax
+        xor eax, eax
         call printf
         
-        mov eax, 60
         xor edi, edi
-        syscall
+        call exit
+        
+        div_by_zero:
+        and rsp, -16
+        mov rdi, div_zero_msg
+        xor eax, eax
+        call printf
+        mov edi, 1
+        call exit
         """;
     }
 }

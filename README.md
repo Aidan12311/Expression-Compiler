@@ -2,7 +2,7 @@
 
 A small compiler, written in Java, that turns integer arithmetic and bitwise-logic expressions into x86-64 assembly (NASM syntax). It runs as an interactive REPL: you type an expression and it shows each stage of compilation (the tokens, the parsed tree and the generated assembly). It also writes a complete assembly program to `result.asm`. When you assemble, link and run that program, it prints the expression's value.
 
-```x86asm
+```asm
 > (2 + 3) * 4 - 6 / 2
 === Lexer output ===
 Token: "(", kind: LEFT_PAREN
